@@ -1,460 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Sprint: One-Day SOP Design</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .section {
-            padding: 60px 0;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero .subheader {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: #ff6b6b;
-            color: white;
-            padding: 18px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-        
-        .cta-button:hover {
-            background-color: #ff5252;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        }
-        
-        /* Benefits Grid */
-        .benefits {
-            background-color: white;
-        }
-        
-        .benefits h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #2c3e50;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 12px;
-            border-left: 4px solid #4ecdc4;
-        }
-        
-        .benefit-item .checkmark {
-            color: #4ecdc4;
-            font-size: 1.5rem;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        
-        .benefit-item span {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        /* What's Included */
-        .included {
-            background-color: #f8f9fa;
-        }
-        
-        .included h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #2c3e50;
-        }
-        
-        .included-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .included-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .included-item .bullet {
-            color: #667eea;
-            font-size: 1.2rem;
-            margin-right: 15px;
-            margin-top: 2px;
-        }
-        
-        .included-item span {
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-        
-        /* Limited Time Offer */
-        .offer {
-            background-color: white;
-            text-align: center;
-        }
-        
-        .offer-box {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
-        }
-        
-        .offer-box h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .original-price {
-            text-decoration: line-through;
-            opacity: 0.7;
-            font-size: 1.2rem;
-        }
-        
-        .urgency {
-            font-size: 1.1rem;
-            margin: 20px 0;
-            font-weight: 500;
-        }
-        
-        .offer-cta {
-            background-color: white;
-            color: #ff6b6b;
-            padding: 15px 35px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
-        
-        .offer-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        /* Guarantee */
-        .guarantee {
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-        
-        .guarantee h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
-        
-        .guarantee p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 15px;
-            line-height: 1.6;
-        }
-        
-        .risk-free {
-            font-weight: 600;
-            color: #4ecdc4;
-            font-size: 1.3rem;
-        }
-        
-        /* Testimonial */
-        .testimonial {
-            background-color: white;
-            text-align: center;
-        }
-        
-        .testimonial-box {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 40px;
-            background-color: #f8f9fa;
-            border-radius: 20px;
-            border-left: 5px solid #4ecdc4;
-        }
-        
-        .quote {
-            font-size: 1.5rem;
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            line-height: 1.4;
-        }
-        
-        .author {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 1.1rem;
-        }
-        
-        /* About */
-        .about {
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-        
-        .about h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        
-        .about p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        /* Booking */
-        .booking {
-            background-color: white;
-            text-align: center;
-            padding: 80px 0;
-        }
-        
-        .booking h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
-        
-        .booking-options {
-            margin-top: 30px;
-        }
-        
-        .help-text {
-            margin-top: 30px;
-            font-size: 1.1rem;
-            color: #666;
-        }
-        
-        .linkedin-link {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        .linkedin-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero .subheader {
-                font-size: 1.2rem;
-            }
-            
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section {
-                padding: 40px 0;
-            }
-            
-            .offer-box {
-                margin: 0 20px;
-                padding: 30px;
-            }
-            
-            .price {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>System Sprint • One-Day SOP Design</title>
+  <style>
+    /* Reset & globals */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; line-height: 1.5; color: #333; background: #f9f9f9; }
+    a { color: #0055FF; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 800px; margin: 0 auto; padding: 1rem; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      background: #0055FF;
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      text-align: center;
+      transition: background .2s ease;
+    }
+    .btn:hover { background: #0041CC; }
+
+    /* Hero */
+    header {
+      background: #ffffff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    header h1 { font-size: 1.75rem; margin-bottom: .5rem; }
+    header p { margin-bottom: 1.5rem; color: #555; }
+
+    /* Grid */
+    .grid { display: grid; gap: 1rem; }
+    @media(min-width:600px){ .grid-2 { grid-template-columns: repeat(2,1fr); } }
+
+    /* Section titles */
+    h2 { font-size: 1.25rem; margin-bottom: .75rem; color: #0055FF; }
+    .badge { display: inline-block; background: gold; color: #333; padding: .25rem .5rem; border-radius: 4px; font-size: .85rem; margin-bottom: .5rem; }
+
+    /* Offer box */
+    .offer {
+      background: #fff; padding: 1.5rem; border: 2px solid #0055FF; border-radius: 8px;
+      text-align: center; margin: 2rem 0;
+    }
+    .offer p { margin: .5rem 0; font-size: 1.1rem; }
+    .offer .price { font-size: 2rem; font-weight: bold; color: #E53935; }
+    .offer small { color: #777; display: block; margin-top: .25rem; }
+
+    /* Testimonial */
+    blockquote {
+      background: #fff; padding: 1rem 1.5rem; border-left: 4px solid #0055FF;
+      margin: 2rem 0; border-radius: 4px; color: #555;
+    }
+    blockquote footer { margin-top: .75rem; font-size: .9rem; color: #333; }
+
+    /* Footer */
+    footer { text-align: center; margin-top: 3rem; padding: 1rem 0; color: #777; font-size: .85rem; }
+  </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>🚀 SYSTEM SPRINT: One-Day SOP Design for Small Teams</h1>
-            <p class="subheader">Go from messy workflows to scalable systems — in 24 hours.</p>
-            <a href="#booking" class="cta-button">Book My Sprint →</a>
-        </div>
+
+  <div class="container">
+
+    <!-- Hero -->
+    <header>
+      <h1>🚀 SYSTEM SPRINT</h1>
+      <p><strong>One-Day SOP Design for Small Teams</strong><br>
+      Turn messy workflows into scalable systems — in 24 hours.</p>
+      <a href="https://calendar.google.com/calendar/embed?src=ab6d4200d0d8477fe4d11d4a1041fe1d8854d6723a21aae13f7d04b27c33d99a%40group.calendar.google.com&ctz=Australia%2FSydney"
+         class="btn" target="_blank" rel="noopener" aria-label="Book your sprint now">Book My Sprint</a>
+    </header>
+
+    <!-- Benefits -->
+    <section>
+      <h2>🧠 Why Teams Book a System Sprint</h2>
+      <div class="grid grid-2">
+        <p>✅ Save <strong>4-10 hours/week</strong> immediately</p>
+        <p>✅ Delegate without micromanaging</p>
+        <p>✅ Train new hires <strong>30% faster</strong></p>
+        <p>✅ Eliminate repeated questions & handoff errors</p>
+      </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits section">
-        <div class="container">
-            <h2>Why teams book a System Sprint:</h2>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <span class="checkmark">✅</span>
-                    <span>Save 4–10 hours/week instantly</span>
-                </div>
-                <div class="benefit-item">
-                    <span class="checkmark">✅</span>
-                    <span>Delegate without micromanaging</span>
-                </div>
-                <div class="benefit-item">
-                    <span class="checkmark">✅</span>
-                    <span>Train new hires 30% faster</span>
-                </div>
-                <div class="benefit-item">
-                    <span class="checkmark">✅</span>
-                    <span>Stop re-explaining the same tasks</span>
-                </div>
-            </div>
-        </div>
+    <!-- What's Included -->
+    <section>
+      <h2>📦 What’s Included (All in 1 Day)</h2>
+      <ul>
+        <li>30-min Strategy Call — Identify 1–2 high-friction workflows</li>
+        <li><strong>Custom SOP Bundle:</strong>
+          <ul>
+            <li>Visual Process Map (Lucidchart/PDF)</li>
+            <li>Task Checklist & reusable templates</li>
+            <li>Written SOP (Notion, ClickUp, or Google Doc)</li>
+          </ul>
+        </li>
+        <li>🎥 Optional Loom walkthrough</li>
+        <li>🔁 1 round of feedback & edits</li>
+      </ul>
     </section>
 
-    <!-- What's Included Section -->
-    <section class="included section">
-        <div class="container">
-            <h2>What You Get (Delivered in 1 Day)</h2>
-            <div class="included-list">
-                <div class="included-item">
-                    <span class="bullet">📋</span>
-                    <span>30-min Strategy Call to map 1–2 key workflows</span>
-                </div>
-                <div class="included-item">
-                    <span class="bullet">📦</span>
-                    <span>SOP Bundle: Flowchart, Checklist, SOP Doc (ClickUp / Notion / Google Doc)</span>
-                </div>
-                <div class="included-item">
-                    <span class="bullet">🎥</span>
-                    <span>Optional Loom walkthrough</span>
-                </div>
-                <div class="included-item">
-                    <span class="bullet">🔄</span>
-                    <span>1 round of feedback & edits</span>
-                </div>
-            </div>
-        </div>
+    <!-- Offer -->
+    <div class="offer">
+      <span class="badge">LIMITED TIME</span>
+      <p>First <strong>2 spots</strong> this month:</p>
+      <div class="price">$497</div>
+      <small><s>$997</s> after they fill.</small>
+      <a href="https://calendar.google.com/calendar/embed?src=ab6d4200d0d8477fe4d11d4a1041fe1d8854d6723a21aae13f7d04b27c33d99a%40group.calendar.google.com&ctz=Australia%2FSydney"
+         class="btn" target="_blank" rel="noopener">Claim My Spot</a>
+    </div>
+
+    <!-- Guarantee -->
+    <section>
+      <h2>🛡️ 100% Satisfaction Guarantee</h2>
+      <p>If your SOP isn’t crystal-clear and ready to run, I’ll rewrite it once for free.<br>
+      Still not happy? <strong>Don’t pay.</strong></p>
     </section>
 
-    <!-- Limited Time Offer Section -->
-    <section class="offer section">
-        <div class="container">
-            <div class="offer-box">
-                <h3>🎯 Limited Time Offer</h3>
-                <div class="price">$497</div>
-                <div class="original-price">(normally $997)</div>
-                <p class="urgency">Only 2 spots left — act now before pricing resets.</p>
-                <a href="#booking" class="offer-cta">Book Now</a>
-            </div>
-        </div>
+    <!-- Testimonial -->
+    <section>
+      <h2>💬 What Clients Are Saying</h2>
+      <blockquote>
+        “This SOP saved us <strong>4+ hours a week</strong> and made delegation effortless.”
+        <footer>— Pedro Fernandes, Operations Manager</footer>
+      </blockquote>
     </section>
 
-    <!-- Satisfaction Guarantee Section -->
-    <section class="guarantee section">
-        <div class="container">
-            <h3>🛡️ Satisfaction Guarantee</h3>
-            <p>Not happy with the result?<br>I'll rewrite it once for free. Still not happy? You don't pay.</p>
-            <p class="risk-free">This offer is risk-free — just execution clarity.</p>
-        </div>
+    <!-- About -->
+    <section>
+      <h2>👋 About Me</h2>
+      <p>I’m a systems-thinking engineer with <strong>12+ years</strong> in high-stakes design & operations. I’ve built scalable
+      processes for multimillion-dollar projects — now I help small teams do the same.</p>
     </section>
 
-    <!-- Testimonial Section -->
-    <section class="testimonial section">
-        <div class="container">
-            <div class="testimonial-box">
-                <p class="quote">"This SOP saved us 4+ hours a week and made delegation effortless."</p>
-                <p class="author">— Pedro F., Operations Manager</p>
-            </div>
-        </div>
-    </section>
+  </div>
 
-    <!-- About Section -->
-    <section class="about section">
-        <div class="container">
-            <h3>👋 About</h3>
-            <p>I'm a systems-thinking engineer with 12+ years in high-stakes design and operations. I've built scalable systems for multimillion-dollar projects — now I help small teams do the same.</p>
-        </div>
-    </section>
+  <footer>
+    <p>Have a question? <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">DM me on LinkedIn</a></p>
+  </footer>
 
-    <!-- Booking Section -->
-    <section class="booking section" id="booking">
-        <div class="container">
-            <h3>📞 Ready to Get Started?</h3>
-            <div class="booking-options">
-                <a href="https://calendar.google.com/calendar/embed?src=ab6d4200d0d8477fe4d11d4a1041fe1d8854d6723a21aae13f7d04b27c33d99a%40group.calendar.google.com&ctz=Australia%2FSydney" class="cta-button">Book Your Sprint Call →</a>
-            </div>
-            <p class="help-text">
-                Need help first? Want to ask a quick question?<br>
-                <a href="https://linkedin.com/in/your-profile" class="linkedin-link">DM me on LinkedIn</a>
-            </p>
-        </div>
-    </section>
 </body>
 </html>
